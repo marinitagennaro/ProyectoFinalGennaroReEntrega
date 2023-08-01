@@ -82,7 +82,6 @@ document.getElementById('formulario').addEventListener('submit', function (event
     let fechaNacimiento = document.getElementById('fecha_nacimiento').value;
     let telefono = document.getElementById('telefono').value;
     let email = document.getElementById('email').value;
-    let obrasSociales = document.getElementById("listaObrasSociales").querySelector('select').value;
     let seleccionModulo = document.getElementById("tipoModulo").querySelector('select').value;
     let especialidadSeleccionada = document.getElementById('especialidades').querySelector('select').value;
     let turnoSeleccionado = document.getElementById('programar').querySelector('select').value;
@@ -98,7 +97,7 @@ document.getElementById('formulario').addEventListener('submit', function (event
         turnoSeleccionado,
     };
 
-    console.table(formData);
+    //console.table(formData);
 
     updateTable(formData);
 });
@@ -296,22 +295,6 @@ tabla.innerHTML = `
 </tr>
 </table>
 `;
-
-// boton restablecer para que borre lo pedido en el locaStorage ESTO LO TENGO QUE MEJORAR PQ PA MI NO ANDA
-
-
-/* let restablecer = document.getElementById("restablecer");
-restablecer = localStorage.removeItem(updateTable);
-localStorage.setItem('restablecer', JSON.stringify(restablecer));
-Swal.fire({
-    position: 'center',
-    icon: 'info',
-    title: 'Los datos fueron eliminados.',
-    showConfirmButton: false,
-    timer: 2500})
-
-
-*/
 
 //json
 async function obtenerJsonEspecialidades() {
