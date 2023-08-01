@@ -39,6 +39,8 @@ button:hover {
 select{
     margin-bottom: 15px;
 }
-h1{
-    text-align: center;
+
+.datosConteiner, td {
+    margin-left: 20px;
+    padding-left: 20px;
 }

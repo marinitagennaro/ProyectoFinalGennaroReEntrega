@@ -9,6 +9,39 @@ modulo.innerHTML = `
 `;
 
 
+let obrasSociales = [
+    {nombre: "Obra Social de la Construccion (OSPECON)", cobertura: "Cobertura MII"},
+    {nombre: "Obra Social de los choferes y camioneros (OSCHOCA)", cobertura: "Cobertura MIS"},
+    {nombre: "Obra Social de los pasteleros (ELEVAR)", cobertura: "Cobertura MIS"},
+    {nombre: "Obra Social del personal Grafico(GRAFICOS)", cobertura: "Cobertura MII"},
+    {nombre: "Obra Social de los empleados de comercio (OSECAC)", cobertura: "Cobertura MII"},
+    {nombre: "Obra Social del personal de sanidad (OSPSA)", cobertura: "Cobertura MIS"},
+    {nombre: "Obra Social del plastico (OSPIP)", cobertura: "Cobertura MIS"},
+    {nombre: "Obra Social de las pymes y empresarios (OSDEPYM)", cobertura: "Cobertura MII"},
+    {nombre: "Obra Social del Personal de los empleados de la nacion (UP)", cobertura: "Cobertura MII"},
+];
+
+const listaObrasSociales = document.getElementById("listaObrasSociales");
+
+obrasSociales.forEach(obrasSocial => {
+    const optionElement = document.createElement("option");
+    optionElement.value = obrasSocial.nombre;
+    optionElement.textContent = obrasSocial.nombre;
+    listaObrasSociales.appendChild(optionElement);
+});
+
+function mostrarCobertura() {
+const seleccion = document.getElementById("listaObrasSociales").value;
+const obraSocial = obrasSociales.find(ob => ob.nombre === seleccion);
+
+if (obraSocial) {
+    document.getElementById("coberturaObraSocial").textContent = `La obra social ${obraSocial.nombre} tiene una ${obraSocial.cobertura}.`;
+} else {
+    document.getElementById("coberturaObraSocial").textContent = "No se encontró información de cobertura para esa obra social.";
+}
+
+}
+
 
 
 function seleccionEspecialidad () {
@@ -49,6 +82,7 @@ document.getElementById('formulario').addEventListener('submit', function (event
     let fechaNacimiento = document.getElementById('fecha_nacimiento').value;
     let telefono = document.getElementById('telefono').value;
     let email = document.getElementById('email').value;
+    let obrasSociales = document.getElementById("listaObrasSociales").querySelector('select').value;
     let seleccionModulo = document.getElementById("tipoModulo").querySelector('select').value;
     let especialidadSeleccionada = document.getElementById('especialidades').querySelector('select').value;
     let turnoSeleccionado = document.getElementById('programar').querySelector('select').value;
@@ -58,6 +92,7 @@ document.getElementById('formulario').addEventListener('submit', function (event
         fechaNacimiento,
         telefono,
         email,
+        obrasSociales,
         seleccionModulo,
         especialidadSeleccionada,
         turnoSeleccionado,
@@ -260,20 +295,23 @@ tabla.innerHTML = `
     <td id="turnos" class="tablaGeneral disponible">Disponible</td>
 </tr>
 </table>
-<button id="restablecer">Restablecer</button>
 `;
 
 // boton restablecer para que borre lo pedido en el locaStorage ESTO LO TENGO QUE MEJORAR PQ PA MI NO ANDA
-let restablecer = document.getElementById("restablecer");
-restablecer = localStorage.remove(updateTable);
+
+
+/* let restablecer = document.getElementById("restablecer");
+restablecer = localStorage.removeItem(updateTable);
 localStorage.setItem('restablecer', JSON.stringify(restablecer));
 Swal.fire({
     position: 'center',
-    icon: 'ok',
+    icon: 'info',
     title: 'Los datos fueron eliminados.',
     showConfirmButton: false,
     timer: 2500})
 
+
+*/
 
 //json
 async function obtenerJsonEspecialidades() {
